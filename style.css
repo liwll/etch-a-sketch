@@ -5,10 +5,10 @@ body {
 }
 
 .grid {
-    margin: 10% auto;
+    margin: 5% auto;
     display: flex;
-    width: 500px;
-    height: 500px;
+    width: 555px;
+    height: 555px;
     flex-flow: row wrap;
     justify-content: space-evenly;
     background-color: white;
