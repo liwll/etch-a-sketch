@@ -4,15 +4,19 @@ function createGrid(n) {
         container.removeChild(container.lastElementChild);
     }
 
+    const grid = document.createElement('div');
+    grid.classList.add('grid');
+    container.appendChild(grid);
+
     for (let i = 0; i < n**2; i++) {
         const gridBox = document.createElement('div');
         gridBox.classList.add('grid-box');
-        container.appendChild(gridBox);
         gridBox.addEventListener('mouseenter', () => {
             gridBox.style.backgroundColor = 'aqua';
         });
         let width = 100/n;
         gridBox.setAttribute('style', `width:${width}%; height:${width}%`);
+        grid.appendChild(gridBox);
     }
 }
 
@@ -24,10 +28,6 @@ function clearGrid() {
     })
 }
 
-function newGrid(size) {
-    createGrid(size)
-}
-
 const clearButton = document.querySelector('.clear-grid-button');
 clearButton.addEventListener('click', () => {
     clearGrid();
@@ -35,21 +35,9 @@ clearButton.addEventListener('click', () => {
 
 function updateSizeText(size) {
     const sizeText = document.querySelector('.size-text');
-    sizeText.textContent = `New Size: ${size} x ${size}`;
+    sizeText.textContent = `Current Size: ${size} x ${size}`;
+    createGrid(size);
 }
-
-function updateCurrentText(size) {
-    const currentText = document.querySelector('.current-size-text');
-    
-    currentText.textContent = `Current Size: ${size} x ${size}`;
-}
-
-const submitSize = document.querySelector('.submit-size');
-submitSize.addEventListener('click', () => {
-    const newSize = document.querySelector('.new-size');
-    newGrid(newSize.value);
-    updateCurrentText(newSize.value);
-})
 
 
 createGrid(12);
